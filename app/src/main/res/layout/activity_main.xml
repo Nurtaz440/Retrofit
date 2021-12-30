@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:elevation="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
@@ -29,6 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/instagram"
+                android:textStyle="bold"
+                android:textSize="24sp"
                 />
 
         </androidx.appcompat.widget.Toolbar>
@@ -57,8 +60,7 @@
                         android:id="@+id/rv_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:background="#E8E8E8"
                         tools:listitem="@layout/item_post"
                         />
 
@@ -66,8 +68,6 @@
                         android:id="@+id/rv_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
                         tools:listitem="@layout/item_vertical"
                         />
 

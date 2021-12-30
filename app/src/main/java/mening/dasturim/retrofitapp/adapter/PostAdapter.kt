@@ -1,5 +1,6 @@
 package mening.dasturim.retrofitapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,8 @@ class PostAdapter(val listItems : List<DataPostItem>, val adapterListener: UserA
             .into(holder.image)
 
         holder.itemView.setOnClickListener {
-            adapterListener.onClick(position)
+            Log.d("clicked",listItems[position].toString())
+            adapterListener.onClick(listItems[position])
         }
     }
 
@@ -46,5 +48,5 @@ class PostAdapter(val listItems : List<DataPostItem>, val adapterListener: UserA
 }
 
 interface UserAdapterListener {
-    fun onClick(item: Int)
+    fun onClick(item: DataPostItem)
 }

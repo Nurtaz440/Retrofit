@@ -19,7 +19,7 @@ class InfoAdapter(val listItems:List<InfoItems>)
     override fun onBindViewHolder(holder: InfoAdapter.VH, position: Int) {
         holder.textDescription.text=listItems[position].publishDate
         holder.name.text=listItems[position].text
-        Glide.with(holder.itemView.context).load(listItems[position]).into(holder.imageView)
+        Glide.with(holder.itemView.context).load(listItems[position].image).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

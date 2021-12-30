@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                         LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
                     postAdapter = PostAdapter(response.body()?.data ?: emptyList(), object :
                         UserAdapterListener {
-                        override fun onClick(item: Int) {
+                        override fun onClick(item: DataPostItem) {
+                            Log.d("OnClick click",item.toString())
+
                             val intent = Intent(this@MainActivity, PostActivity::class.java)
                             intent.putExtra("extra_data", item)
                             startActivity(intent)
