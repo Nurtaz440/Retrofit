@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import mening.dasturim.retrofitapp.adapter.CommentAdapterListener
 import mening.dasturim.retrofitapp.adapter.InfoAdapter
 import mening.dasturim.retrofitapp.adapter.PostAdapter
 import mening.dasturim.retrofitapp.adapter.UserAdapterListener
@@ -86,7 +87,17 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                 activityMainBinding.rvVertical.setHasFixedSize(true)
                 activityMainBinding.rvVertical.layoutManager =
                     LinearLayoutManager(this@MainActivity)
-                infoAdapter = InfoAdapter(response.body()?.data ?: listOf())
+                infoAdapter = InfoAdapter(response.body()?.data ?: listOf(),object : CommentAdapterListener{
+                    override fun onClick(item: InfoItems) {
+
+                        val intent = Intent(this@MainActivity, CommentActivity::class.java)
+                        intent.putExtra("data_comment", item)
+                        startActivity(intent)
+
+
+                    }
+
+                })
                 activityMainBinding.rvVertical.adapter = infoAdapter
 
             }
@@ -104,3 +115,4 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
 }
+

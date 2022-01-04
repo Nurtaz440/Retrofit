@@ -31,7 +31,6 @@ class PostAdapter(val listItems : List<DataPostItem>, val adapterListener: UserA
             .into(holder.image)
 
         holder.itemView.setOnClickListener {
-            Log.d("clicked",listItems[position].toString())
             adapterListener.onClick(listItems[position])
         }
     }

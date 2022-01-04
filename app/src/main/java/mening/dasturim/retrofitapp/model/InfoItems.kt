@@ -1,5 +1,6 @@
 package mening.dasturim.retrofitapp.model
 
+import java.io.Serializable
 
 
 data class InfoItems(
@@ -10,4 +11,4 @@ data class InfoItems(
     val image:String
 
 
-)
+):Serializable

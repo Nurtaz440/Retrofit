@@ -1,11 +1,13 @@
 package mening.dasturim.retrofitapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import mening.dasturim.retrofitapp.adapter.CommentAdapterListener
 import mening.dasturim.retrofitapp.adapter.InfoAdapter
 import mening.dasturim.retrofitapp.databinding.ActivityPostBinding
 import mening.dasturim.retrofitapp.model.DataPostItem
@@ -23,7 +25,8 @@ class PostActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post)
+        activityMainBinding= ActivityPostBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
 
         activityMainBinding.swipePost.setOnRefreshListener(this)
         activityMainBinding.swipePost.isRefreshing = true
@@ -47,13 +50,18 @@ class PostActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                     call: Call<BaseResponse<List<InfoItems>>>,
                     response: Response<BaseResponse<List<InfoItems>>>
                 ) {
-                    Log.d("postUser",response.body()?.data.toString())
 
                     activityMainBinding.swipePost.isRefreshing = false
                     activityMainBinding.rvPost.setHasFixedSize(true)
                     activityMainBinding.rvPost.layoutManager =
                         LinearLayoutManager(this@PostActivity)
-                    infoAdapter = InfoAdapter(response.body()?.data ?: listOf())
+                    infoAdapter = InfoAdapter(response.body()?.data ?: listOf(),object :
+                        CommentAdapterListener {
+                        override fun onClick(item: InfoItems) {
+
+                        }
+
+                    })
                     activityMainBinding.rvPost.adapter = infoAdapter
                 }
 

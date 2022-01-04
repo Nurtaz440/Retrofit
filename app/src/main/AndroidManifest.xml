@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RetrofitApp">
         <activity
-            android:name=".PostActivity" />
+            android:name=".CommentActivity"
+            android:exported="false" />
+        <activity android:name=".PostActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
